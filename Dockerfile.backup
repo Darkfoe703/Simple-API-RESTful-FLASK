@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir gunicorn
+
+COPY resources resources
+COPY static static
+COPY templates templates
+COPY app.py config.py models.py boot.sh ./
+RUN chmod a+x boot.sh
+
+ENV FLASK_APP app.py
+
+EXPOSE 5000
+ENTRYPOINT ["./boot.sh"]
