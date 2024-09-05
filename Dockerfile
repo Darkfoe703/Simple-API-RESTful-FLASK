@@ -6,10 +6,8 @@ COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir gunicorn
 
-COPY resources resources
-COPY static static
-COPY templates templates
-COPY app.py config.py models.py boot.sh ./
+COPY . .
+RUN ls -a
 RUN chmod a+x boot.sh
 
 ENV FLASK_APP app.py
