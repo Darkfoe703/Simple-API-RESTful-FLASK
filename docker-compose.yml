@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: container_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: vaallover15
+      POSTGRES_DB: task_api_db
+
+    # ports:
+    #   - "5432:5432"
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+  web:
+    build: .
+    container_name: container_api
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:vaallover15@db:5432/task_api_db
+      - DATABASE_HOST=db
+    depends_on:
+      - db
+
+  
+    
+# volumes:
+#   postgres_data:
+
+# Para saber la IP de un contenedor:
+#docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' contenedor
