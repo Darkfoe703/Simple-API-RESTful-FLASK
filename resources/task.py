@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource
 from models import db, Task
+import json
 
 
 class TaskResource(Resource):
@@ -12,6 +13,7 @@ class TaskResource(Resource):
                 "title": task.title,
                 "description": task.description,
                 "employee_id": task.employee_id,
+                "status": json.dumps(task.status, default=lambda x: x.name),
             }
             for task in tasks
         ], 200
@@ -22,6 +24,7 @@ class TaskResource(Resource):
             title=data["title"],
             description=data.get("description"),
             employee_id=data["employee_id"],
+            #status=data["status"],
         )
         db.session.add(new_task)
         db.session.commit()
@@ -30,6 +33,7 @@ class TaskResource(Resource):
             "title": new_task.title,
             "description": new_task.description,
             "employee_id": new_task.employee_id,
+            "status": json.dumps(new_task.status, default=lambda x: x.name),
         }, 201
 
     def put(self, task_id):
@@ -38,12 +42,14 @@ class TaskResource(Resource):
         task.title = data["title"]
         task.description = data.get("description")
         task.employee_id = data["employee_id"]
+        task.status = data["status"]
         db.session.commit()
         return {
             "id": task.id,
             "title": task.title,
             "description": task.description,
             "employee_id": task.employee_id,
+            "status": json.dumps(task.status, default=lambda x: x.name),
         }, 200
 
     def delete(self, task_id):
