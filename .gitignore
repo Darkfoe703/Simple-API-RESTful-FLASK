@@ -174,5 +174,7 @@ cython_debug/
 /share
 /__pycache__
 /include
+/migrations
 pyvenv.cfg
+
 *.tar.gz
