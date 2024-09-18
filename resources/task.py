@@ -6,17 +6,36 @@ import json
 
 class TaskResource(Resource):
     def get(self):
-        tasks = Task.query.all()
-        return [
-            {
-                "id": task.id,
-                "title": task.title,
-                "description": task.description,
-                "employee_id": task.employee_id,
-                "status": json.dumps(task.status, default=lambda x: x.name),
-            }
-            for task in tasks
-        ], 200
+        # Obtener los parámetros de paginación de la URL
+        page = request.args.get("page", 1, type=int)  # Página actual, por defecto es 1
+        per_page = request.args.get(
+            "per_page", 5, type=int
+        )  # Elementos por página, por defecto 5
+
+        # Consulta paginada a la base de datos
+        paginated_tasks = Task.query.paginate(
+            page=page, per_page=per_page, error_out=False
+        )
+
+        # Crear la respuesta con los datos paginados
+        return {
+            "tasks": [
+                {
+                    "id": task.id,
+                    "title": task.title,
+                    "description": task.description,
+                    "employee_id": task.employee_id,
+                    "status": json.dumps(task.status, default=lambda x: x.name),
+                }
+                for task in paginated_tasks.items  # 'items' contiene las tareas de la página actual
+            ],
+            "total": paginated_tasks.total,  # Total de tareas
+            "page": paginated_tasks.page,  # Página actual
+            "per_page": paginated_tasks.per_page,  # Cantidad de tareas por página
+            "total_pages": paginated_tasks.pages,  # Total de páginas
+            "has_next": paginated_tasks.has_next,  # Si existe una página siguiente
+            "has_prev": paginated_tasks.has_prev,  # Si existe una página anterior
+        }, 200
 
     def post(self):
         data = request.get_json()

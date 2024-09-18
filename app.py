@@ -1,3 +1,6 @@
+# TODO:
+#     - paginación DONE
+#     - API gui y formularios
 import psycopg2
 from psycopg2 import sql
 from flask import Flask, render_template
@@ -44,7 +47,7 @@ def index():
     return render_template("index.html")
 
 api = Api(app)
-api.add_resource(EmployeeResource, "/employees")
+api.add_resource(EmployeeResource, "/employees", "/employees/<int:employee_id>")
 api.add_resource(TaskResource, "/tasks", "/tasks/<int:task_id>")
 
 if __name__ == "__main__":
