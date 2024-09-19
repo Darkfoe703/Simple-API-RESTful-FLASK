@@ -6,17 +6,37 @@ import json
 
 class TaskResource(Resource):
     def get(self):
-        tasks = Task.query.all()
-        return [
-            {
-                "id": task.id,
-                "title": task.title,
-                "description": task.description,
-                "employee_id": task.employee_id,
-                "status": json.dumps(task.status, default=lambda x: x.name),
-            }
-            for task in tasks
-        ], 200
+        # Pagination parameter from URL
+        # First page, default 1
+        page = request.args.get("page", 1, type=int)
+        per_page = request.args.get(
+            "per_page", 5, type=int
+        )  # Defalut 5 items per page
+
+        # Paginated query
+        paginated_tasks = Task.query.paginate(
+            page=page, per_page=per_page, error_out=False
+        )
+
+        # Crete response
+        return {
+            "tasks": [
+                {
+                    "id": task.id,
+                    "title": task.title,
+                    "description": task.description,
+                    "employee_id": task.employee_id,
+                    "status": json.dumps(task.status, default=lambda x: x.name),
+                }
+                for task in paginated_tasks.items
+            ],
+            "total": paginated_tasks.total,  # Total tasks
+            "page": paginated_tasks.page,  # actual page
+            "per_page": paginated_tasks.per_page,
+            "total_pages": paginated_tasks.pages,
+            "has_next": paginated_tasks.has_next,
+            "has_prev": paginated_tasks.has_prev,
+        }, 200
 
     def post(self):
         data = request.get_json()
@@ -24,7 +44,6 @@ class TaskResource(Resource):
             title=data["title"],
             description=data.get("description"),
             employee_id=data["employee_id"],
-            #status=data["status"],
         )
         db.session.add(new_task)
         db.session.commit()
