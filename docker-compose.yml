@@ -16,7 +16,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - DATABASE_URL=postgresql+psycopg2://postgres:vaallover15@db:5432/task_api_db
+      - DATABASE_URL=postgresql+psycopg2://postgres:pass1234@db:5432/task_api_db
       - DATABASE_HOST=db
     depends_on:
       - db
