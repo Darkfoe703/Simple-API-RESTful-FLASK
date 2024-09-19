@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 from models import db, Employee
 
-
+# Define resource and methods
 class EmployeeResource(Resource):
     def get(self):
         employees = Employee.query.all()

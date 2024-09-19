@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from enum import Enum
 
+# Create models
+
 db = SQLAlchemy()
 
 class StatusEnum(Enum):
