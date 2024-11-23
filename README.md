@@ -12,6 +12,20 @@ Have 2 resources: employees and tasks, requested in JSON format
     api.add_resource(TaskResource, "/tasks", "/tasks/<int:task_id>")
 Contain the `dockerfile` and `compose.yml` to create the image and deploy the api on isolated containers.
 
+### Settings
+
+You can modify .env file with valid field for DB. Thats is not apropiate for production environment. Take carefully.
+
+    FLASK_ENV=development
+    FLASK_DEBUG=TRUE
+    FLASK_APP=app.py
+    DATABASE_URL=postgresql+psycopg2://myuser:mypass@localhost:5432/task_api_db
+
+    DATABASE_URL_DOCK=postgresql+psycopg2://myuser:mypass@db:5432/task_api_db
+    POSTGRES_USER=myuser
+    POSTGRES_PASS=mypass
+    POSTGRES_DB=task_api_db
+
 ## Usage
 The results are paginated: 5 tasks per page by default:
 
