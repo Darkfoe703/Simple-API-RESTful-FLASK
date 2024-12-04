@@ -26,6 +26,7 @@ You can modify .env file with valid field for DB. Thats is not apropiate for pro
     POSTGRES_PASS=mypass
     POSTGRES_DB=task_api_db
 
+
 ## Usage
 The results are paginated: 5 tasks per page by default:
 
