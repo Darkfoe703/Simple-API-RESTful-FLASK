@@ -1,0 +1,16 @@
+stages:
+  - sync
+
+sync_to_github:
+  stage: sync
+  script:
+    - echo "Setting up Git..."
+    - git config --global user.name "gitlab-ci[bot]"
+    - git config --global user.email "gitlab-ci[bot]@example.com"
+    # Clonar el repositorio de GitLab en espejo
+    - git clone --mirror https://gitlab.com/Darkfoe703/simple-api-restful-flask.git repo
+    - cd repo
+    # Añadir el repositorio remoto de GitHub
+    - git remote add github https://oauth2:${GITHUB_TOKEN}@github.com/Darkfoe703/Simple-API-RESTful-FLASK.git
+    # Empujar al repositorio de GitHub
+    - git push --mirror github
