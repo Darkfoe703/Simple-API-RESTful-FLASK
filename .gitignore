@@ -176,5 +176,5 @@ cython_debug/
 /include
 /migrations
 pyvenv.cfg
-
+.vscode/
 *.tar.gz
