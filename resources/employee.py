@@ -1,9 +1,11 @@
 from flask import request
 from flask_restful import Resource
 from models import db, Employee
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # Define resource and methods
 class EmployeeResource(Resource):
+    @jwt_required()
     def get(self):
         employees = Employee.query.all()
         return [

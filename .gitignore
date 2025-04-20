@@ -178,3 +178,5 @@ cython_debug/
 pyvenv.cfg
 .vscode/
 *.tar.gz
+.env.dev
+.env.prod

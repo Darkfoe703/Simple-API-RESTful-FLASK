@@ -11,3 +11,4 @@ pyvenv.cfg
 .flaskenv
 .gitignore
 .dockerignore
+.env.dev
