@@ -1,0 +1,116 @@
+/* Estilos para el modo oscuro de Swagger UI */
+body {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.swagger-ui .info,
+.swagger-ui .models,
+.swagger-ui .operations {
+    background-color: #252526;
+}
+
+.swagger-ui .info .title,
+.swagger-ui .info .version,
+.swagger-ui .info .description p,
+.swagger-ui .opblock-summary-description,
+.swagger-ui .opblock-section-header h4,
+.swagger-ui .model-title,
+.swagger-ui .model-properties summary,
+.swagger-ui .model-properties__name,
+.swagger-ui .model-properties__type,
+.swagger-ui .model-properties__description,
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type,
+.swagger-ui .parameter__description,
+.swagger-ui .response-col_description,
+.swagger-ui .response-col_code {
+    color: #d4d4d4;
+}
+
+.swagger-ui .opblock-summary {
+    background-color: #2a2a2b;
+    border-bottom: 1px solid #333;
+}
+
+.swagger-ui .opblock-summary.opblock-summary-get,
+.swagger-ui .opblock-summary.opblock-summary-post,
+.swagger-ui .opblock-summary.opblock-summary-put,
+.swagger-ui .opblock-summary.opblock-summary-delete,
+.swagger-ui .opblock-summary.opblock-summary-patch,
+.swagger-ui .opblock-summary.opblock-summary-options,
+.swagger-ui .opblock-summary.opblock-summary-head {
+    color: #d4d4d4;
+}
+
+.swagger-ui .opblock-tag {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #444;
+}
+
+.swagger-ui .btn {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #444;
+}
+
+.swagger-ui .btn:hover {
+    background-color: #444;
+}
+
+.swagger-ui input[type=text],
+.swagger-ui textarea,
+.swagger-ui select {
+    background-color: #333;
+    color: #d4d4d4;
+    border: 1px solid #444;
+}
+
+.swagger-ui input[type=text]::placeholder,
+.swagger-ui textarea::placeholder,
+.swagger-ui select::placeholder {
+    color: #aaa;
+}
+
+.swagger-ui .table thead th {
+    background-color: #333;
+    color: #eee;
+    border-bottom: 1px solid #555;
+}
+
+.swagger-ui .table tbody td {
+    border-bottom: 1px solid #333;
+}
+
+.swagger-ui .model-properties__row {
+    border-bottom: 1px solid #333;
+}
+
+.swagger-ui .opblock-body {
+    border-bottom: 1px solid #333;
+}
+
+.swagger-ui .response-inner {
+    background-color: #2a2a2b;
+    border: 1px solid #333;
+}
+
+.swagger-ui .loading-container {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.swagger-ui .loading-container .loading {
+    color: #eee;
+}
+
+/* Ajustes para el editor de código (si lo usas) */
+.swagger-ui .ace_editor {
+    background-color: #252526 !important;
+    color: #d4d4d4 !important;
+}
+
+.swagger-ui .ace_gutter {
+    background: #1e1e1e !important;
+    color: #d4d4d4 !important;
+}

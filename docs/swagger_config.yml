@@ -1,0 +1,9 @@
+headers: []
+specs:
+  - endpoint: apispec_1
+    route: /apispec_1.json
+    rule_filter: null  # Equivalente a lambda rule: True
+    model_filter: null # Equivalente a lambda model: True
+static_url_path: /flasgger_static
+#swagger_ui_css: /static/css/swagger-dark.css
+specs_route: /apidocs/

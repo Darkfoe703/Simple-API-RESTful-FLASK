@@ -1,0 +1,32 @@
+tags:
+  - Auth
+summary: Register a new user
+description: Registers a user using an email and password.
+parameters:
+  - in: body
+    name: body
+    required: true
+    schema:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+        password:
+          type: string
+          example: securepassword123
+      required:
+        - email
+        - password
+responses:
+  201:
+    description: User created successfully
+    schema:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+  400:
+    description: Missing email or password / Email already exists

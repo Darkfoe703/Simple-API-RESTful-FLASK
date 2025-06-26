@@ -4,9 +4,13 @@ from flask_restful import Resource
 from models import db, User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+import os
+from flasgger import swag_from
+from os.path import join, dirname
 
 
 class Register(Resource):
+    @swag_from(join(dirname(__file__), "../docs/register.yml"))
     def post(self):
         data = request.get_json()
         email = data.get("email")
@@ -15,7 +19,7 @@ class Register(Resource):
             return {
                 "message": "Password is required."
             }, 400
-        
+
         if User.query.filter_by(email=email).first():
             return {
                 "message": "Email already registered."

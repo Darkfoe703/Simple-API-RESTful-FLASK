@@ -1,0 +1,31 @@
+swagger: "2.0"
+info:
+  title: Simple API FLask
+  description: >
+    This is the documentation for the RESTful API built with Flask.
+
+    It includes endpoints for registration, login, users, tasks, and employees.
+  version: "1.0.0"
+  contact:
+    name: Marco Antonio Romero
+    email: marcoromero.dev@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+basePath: /api/v1
+schemes:
+  - http
+  - https
+host: localhost:5000  # Cambiá esto si estás desplegando en otro lado
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: Auth
+    description: Authentication endpoints (register, login, profile)
+  - name: Tasks
+    description: Task management
+  - name: Employees
+    description: Employee management
